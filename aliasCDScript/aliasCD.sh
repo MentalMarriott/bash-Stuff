@@ -23,7 +23,7 @@ do
 
 	#inserts at line 85 to the ~/.bashrc script might change to append
 	#as not everyone will have their aliases on that line
-	sed -i "85i\alias $dirName= \'cd $dirLoc\'" ./bashtest
+	sed -i "85i\alias $dirName= \'cd $dirLoc\'" ~/.bashrc
 done
 
 echo "Please log out and back in for changes to take effect"
