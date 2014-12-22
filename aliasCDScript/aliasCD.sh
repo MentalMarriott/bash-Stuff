@@ -17,8 +17,8 @@ do
 	dirLoc=$location
 	dirLoc="${dirLoc//bash#/}"
 	dirLoc="${dirLoc// /\\\\ }"	#escapes spaces by adding in \ 
-	dirLoc="${dirLoc/////}"             # replaces \\ with \
-	dirLoc=$dirLoc/$dir
+	dirLoc="${dirLoc//\/\//\/}"             # replaces \\ with \
+	dirLoc=$dirLoc$dir
 	
 #	echo $dirName 			#debug lines to check right values are usd
 	echo $dirLoc
@@ -26,7 +26,7 @@ do
 
 	#inserts at line 85 to the ~/.bashrc script might change to append
 	#as not everyone will have their aliases on that line
-	sed -i "85i\alias $dir= \'cd $dirLoc\'" ~/.bashrc
+	sed -i "85i\alias $dir=\'cd $dirLoc\'" ~/.bashrc
 done
 
 echo "Please log out and back in for changes to take effect"
