@@ -21,8 +21,8 @@ do
 	dirLoc=$dirLoc$dir
 	
 #	echo $dirName 			#debug lines to check right values are usd
-	echo $dirLoc
-	#echo $dirName
+	#echo $dirLoc
+	echo $dir
 
 	#inserts at line 85 to the ~/.bashrc script might change to append
 	#as not everyone will have their aliases on that line
