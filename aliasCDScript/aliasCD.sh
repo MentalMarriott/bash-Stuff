@@ -8,7 +8,7 @@
 location=$1	# takes location as a parameter
 
 #gets the 9th field(name) from the ls -l of the location passed
-dirs=`ls -l $location | egrep '^d' | awk '{print $9}'`
+dirs=`ls -l "$location" | egrep '^d' | awk '{print $9}'`
 
 
 # iterates through the directories in the given location
@@ -16,7 +16,7 @@ for dir in $dirs
 do
 	dirLoc=$location
 	dirLoc="${dirLoc//bash#/}"
-	dirLoc="${dirLoc// /\\\\ }"	#escapes spaces by adding in \ 
+	dirLoc="${dirLoc// /\\ }"	#escapes spaces by adding in \ 
 	dirLoc="${dirLoc//\/\//\/}"             # replaces \\ with \
 	dirLoc=$dirLoc$dir
 	
