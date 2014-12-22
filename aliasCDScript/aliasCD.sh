@@ -7,23 +7,26 @@
 
 location=$1	# takes location as a parameter
 
-# iterates through the directories in the given location
-for dir in $location/*/ 
-do
-	dirName="${dir//..}"
-	dirName="${dirName%/}"
-	dirName="${dirName////}"	#strips . & / to get dir names
+#gets the 9th field(name) from the ls -l of the location passed
+dirs=`ls -l $location | egrep '^d' | awk '{print $9}'`
 
-	dirLoc=$PWD
+
+# iterates through the directories in the given location
+for dir in $dirs 
+do
+	dirLoc=$location
 	dirLoc="${dirLoc//bash#/}"
 	dirLoc="${dirLoc// /\\\\ }"	#escapes spaces by adding in \ 
+	dirLoc="${dirLoc/////}"             # replaces \\ with \
+	dirLoc=$dirLoc/$dir
 	
-	#echo $dirName 			#debug lines to check right values are usd
+#	echo $dirName 			#debug lines to check right values are usd
 	echo $dirLoc
+	#echo $dirName
 
 	#inserts at line 85 to the ~/.bashrc script might change to append
 	#as not everyone will have their aliases on that line
-	sed -i "85i\alias $dirName= \'cd $dirLoc\'" ~/.bashrc
+	sed -i "85i\alias $dir= \'cd $dirLoc\'" ~/.bashrc
 done
 
 echo "Please log out and back in for changes to take effect"
